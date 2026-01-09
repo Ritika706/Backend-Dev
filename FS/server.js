@@ -28,10 +28,24 @@ const fs = require("fs");
 // console.log("end");
 
 // WRITE FILE->asynchronous
-console.log("first");
-const data = 'this is new data';
-fs.writeFile('./output.txt',data,(err)=>{
-    if(err) throw err
-    console.log("file write success")
-})
+// console.log("first");
+// const data = 'this is new data';
+// fs.writeFile('./output.txt',data,(err)=>{
+//     if(err) throw err
+//     console.log("file write success")
+// })
+// console.log("end");
+
+
+// append function-aynschronous
+// console.log("first");
+// fs.appendFile('./FS/output.txt',"this is new onw",(err)=>{
+//     if(err) throw err
+//     console.log("text add successfully")
+
+// })
+
+// delete function
+fs.unlinkSync('./output.txt')
+
 console.log("end");
