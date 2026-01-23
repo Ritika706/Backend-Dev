@@ -71,7 +71,7 @@ app.get('/user/page',(req,res)=>{//static h
 // jo id url mae hogi uska data show hojayega website mae
 app.get("/user/:id",(req,res)=>{//dynamic h 
     const id = parseInt(req.params.id)//string mae ayegi interger m convert krne k lie parseint
-    let user = userData.find((user)=>user.id === id)
+    const user = userData.find((user)=>user.id === id)
     res.json(user);
 })
 
