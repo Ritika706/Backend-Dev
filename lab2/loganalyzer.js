@@ -1,27 +1,39 @@
 const fs = require('fs');
-const path = require('path');
+const readline = require('readline');
 
-let info=0, warn=0, error=0, buffer='';
+// Log file ka naam
+const logFile = 'app.log';
 
-const stream = fs.createReadStream(path.join(__dirname,'app.log'), {encoding:'utf8'});
+// Counters
+let infoCount = 0;
+let warnCount = 0;
+let errorCount = 0;
+let totalLines = 0;
 
-stream.on('data', chunk => {
-    buffer += chunk;
-    const lines = buffer.split('\n');
-    buffer = lines.pop();
-    lines.forEach(line => { line=line.toUpperCase();
-        if(line.includes('INFO')) info++;
-        if(line.includes('WARN')) warn++;
-        if(line.includes('ERROR')) error++;
-    });
+// Stream se file read karna
+const fileStream = fs.createReadStream(logFile, { encoding: 'utf8' });
+
+fileStream.on('error', (err) => {
+  console.log('File read error:', err.message);
 });
 
-stream.on('end', () => {
-    const l = buffer.toUpperCase();
-    if(l.includes('INFO')) info++;
-    if(l.includes('WARN')) warn++;
-    if(l.includes('ERROR')) error++;
-    console.log('INFO:', info, 'WARN:', warn, 'ERROR:', error);
+// Line-by-line read
+const rl = readline.createInterface({
+  input: fileStream
 });
 
-stream.on('error', err => console.error(err));
+rl.on('line', (line) => {
+  totalLines++;
+
+  if (line.includes('INFO')) infoCount++;
+  else if (line.includes('WARN')) warnCount++;
+  else if (line.includes('ERROR')) errorCount++;
+});
+
+rl.on('close', () => {
+  console.log('\n--- Log Summary ---');
+  console.log('Total Lines:', totalLines);
+  console.log('INFO:', infoCount);
+  console.log('WARN:', warnCount);
+  console.log('ERROR:', errorCount);
+});
