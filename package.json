@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Ritika706/Backend-Dev/issues"
   },
-  "homepage": "https://github.com/Ritika706/Backend-Dev#readme"
+  "homepage": "https://github.com/Ritika706/Backend-Dev#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
