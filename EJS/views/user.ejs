@@ -12,10 +12,18 @@
         <input type="number"name="age" placeholder="Enter age">
          <button type="submit">submit</button>
     </form>
+    <hr>
+    <ul>
     <% userData.forEach((ele)=>{ %>
         <li> <%= ele.name %> <%=ele.age %>
-        <button><a href="/api/user/<%=ele.id %>">Delete</a></button></li>
+            <form action="http://localhost:3000/api/user/<%=ele.id %>?_method=DELETE"METHOD="POST"><button type="submit"><a href=/delete></a>Delete</button>
+            </form>
+            <form>
+                <button><a href="/page/editpage/<%= ele.id %>/">Edit</a></button>
+            </form>
+        </li>
         <% }) %>
+    </ul>
     
 </body>
 </html>
