@@ -81,10 +81,10 @@ export let salaryCount=(req,res)=>{
             message:"User Does not exist"
         });
     }
-    console.log(employeeData)
+    // console.log(employeeData)
     let basicSalary = employeeData[0].basicSalary;
-    console.log(basicSalary)
-    let salary=(employeeData[0].basicSalary + (employeeData.basicSalary[0]*0.2)+(employeeData.basicSalary*0.1)-(employeeData.baasicSalary*0.05));
+    // console.log(basicSalary)
+    let salary=(basicSalary + (basicSalary*0.2)+(basicSalary*0.1)-(basicSalary*0.05));
     console.log(salary);
     res.json({
         message:"User Total Salary",
