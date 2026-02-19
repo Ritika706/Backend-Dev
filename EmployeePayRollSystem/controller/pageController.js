@@ -1,3 +1,22 @@
+// Render Home Page
+export const renderHomePage = (req, res) => {
+    res.render('home', { employeeData });
+};
+
+// Render Add Employee Form
+export const renderFormpage = (req, res) => {
+    res.render('employeeForm');
+};
+
+// Render Edit Employee Page
+export const renderEditPage = (req, res) => {
+    const id = parseInt(req.params.id);
+    const employee = employeeData.find(emp => emp.id === id);
+    if (!employee) {
+        return res.status(404).send('Employee not found');
+    }
+    res.render('employeeEdit', { employee });
+};
 
 import {employeeData} from '../model/data.js';
 
@@ -17,7 +36,7 @@ export let showUser = (req,res) =>{
 export let createUser = (req,res)=>{
     // destructuring
     const {name,email,department,basicSalary}=req.body;
-    let newUser={id:employeeData.length+1,name:name,email:email,departement:department,basicSalary:basicSalary}
+    let newUser={id:employeeData.length+1,name:name,email:email,department:department,basicSalary:basicSalary}
     employeeData.push(newUser);
 
     res.json({

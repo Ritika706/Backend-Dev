@@ -3,7 +3,7 @@ import fs from 'fs';
 //agr nhi likhenge to hr route pr fs module krna padega
 //Request aane par execute hota hai
 //Response bhejne se pehle run hota hai
-export const logingMiddleware=(req,res,next)=>{
+export const loggingMiddleware=(req,res,next)=>{
     let log = `${new Date().toISOString()}-${req.method} ${req.originalUrl}\n`;
     
     fs.appendFile('server.log',log,(err)=>{
